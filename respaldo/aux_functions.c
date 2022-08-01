@@ -52,7 +52,7 @@ char *_getenv(const char *name, char **envir)
 
 int cant_dir(char *path)
 {
-	int res = 2, i = 0;
+	int res = 3, i = 0;
 
 	for (; path[i] != '\0' ; i++)
 		if (path[i] == ':')
@@ -79,16 +79,12 @@ char **_path(char **envir)
 	if (arr_of_dir)
 	{
 		buf = strtok(path, ":=");
-
-		buf = strtok(NULL, ":=");
-
 		for (; buf; i++)
 		{
 			arr_of_dir[i] = strdup(buf);
 			buf = strtok(NULL, ":=");
 		}
-		if (i > 0)
-			arr_of_dir[i] = NULL;
+		arr_of_dir[i] = NULL;
 	}
 	return (arr_of_dir);
 }
@@ -125,9 +121,10 @@ char *_which(char *command, char **envir)
 		if (stat(buf, &st) == 0)
 			break;
 		free(buf);
-		buf = NULL;
 		i++;
 	}
+	if (!path[i])
+		buf = NULL;
 	free_arr(path);
 	return (buf);
 }

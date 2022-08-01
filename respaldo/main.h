@@ -28,8 +28,7 @@ void freedom3(char **arr, char *buf, char **envir);
 /*void freedom2(char **arr, char **envir);*/
 char *str_concat(char *buf, char **path, char *command, int i);
 void rm_jump(char *buf);
-char *mod_buf(char *buf);
-int save_lines(char *new_buf, char **envi);
-int status(char **arr, char *new_buf, char **envir);
+char *mod_buf(char *buf, size_t size);
+int save_lines(char *new_buf, char **envir);
 
 #endif

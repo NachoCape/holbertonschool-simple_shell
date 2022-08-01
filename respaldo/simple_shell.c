@@ -133,12 +133,22 @@ int main(int argc  __attribute__((unused)), char **argv)
 		aux = getline(&buf, &size_buf, stdin);
 		if (cd(aux, md) == 0)
 			break;
-		new_buf = mod_buf(buf);
+		new_buf = mod_buf(buf, size_buf);
 		exit_or_jump = save_lines(new_buf, envir);
 		if (exit_or_jump == 2)
 			continue;
 		if (exit_or_jump == 1)
 			break;
+		/**if (strcmp(new_buf, "exit\n") == 0)
+		{
+			free(new_buf);
+			break;
+		}
+		if (new_buf && new_buf[0] == '\n')
+		{
+			freedom(envir, new_buf);
+			continue;
+		}*/
 		arr = separator(new_buf, ' ');
 		command = _which(arr[0], envir);
 		if (!command)

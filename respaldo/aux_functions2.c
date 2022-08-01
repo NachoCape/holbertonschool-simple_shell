@@ -17,14 +17,6 @@ void free_arr(char **arr)
 	free(arr);
 }
 
-/**
- * freedom - free the memory of envir and buf
- * @envir: pointer to an array of pointers
- * @buf: string of chars
- *
- * Return: void
- */
-
 void freedom(char **envir, char *buf)
 {
 	if (envir)
@@ -39,32 +31,62 @@ void freedom(char **envir, char *buf)
 	}
 }
 
+void freedom3(char **arr, char *buf, char **envir)
+{
+        if (envir)
+        {
+                free_arr(envir);
+                envir = NULL;
+        }
+        if (buf)
+        {
+                free(buf);
+                buf = NULL;
+        }
+        if (arr)
+        {
+                free_arr(arr);
+                arr = NULL;
+        }
+}
+
 /**
- * freedom3 - free the memory of arr, buf and envir
+ * freedom - free the memory of everything use malloc in the main program
+ * @buf: copy array of chars
+ * @envir: pointer to an array of pointers (variables de entorno)
+ * @el_otro_buf: original array of chars
+ * Return: void
+ */
+
+/**void freedom(char *buf, char **envir, char *el_otro_buf)
+{
+	if (envir)
+		free_arr(envir);
+	if (buf)
+		free(buf);
+	if (el_otro_buf)
+		free(el_otro_buf);
+	envir = NULL;
+	buf = NULL;
+	el_otro_buf = NULL;
+}*/
+
+/**
+ * freedom2 - free the memory of envir and arr
+ * @envir: pointer to an array of pointers (variables de entorno)
  * @arr: pointer to an array of pointers
- * @buf: string of chars
- * @envir: pointer to an array of pointers
  *
  * Return: void
  */
 
-void freedom3(char **arr, char *buf, char **envir)
+void freedom2(char **arr, char **envir)
 {
 	if (envir)
-	{
 		free_arr(envir);
-		envir = NULL;
-	}
-	if (buf)
-	{
-		free(buf);
-		buf = NULL;
-	}
 	if (arr)
-	{
 		free_arr(arr);
-		arr = NULL;
-	}
+	envir = NULL;
+	arr = NULL;
 }
 
 /**

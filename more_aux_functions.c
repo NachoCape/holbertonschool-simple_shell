@@ -3,19 +3,34 @@
 /**
  * mod_buf - remove the spaces or tabs in the beggining of buff
  * @buf: array of chars
- * @size: ssize_t (size of buf)
  *
  * Return: buf
  */
 
-char *mod_buf(char *buf, size_t size)
+char *mod_buf(char *buf)
 {
-	size_t i = 0, j = 0;
+	int i = 0, j = 0, k = 0, l = 0, count = 0;
 	char *new_buf = NULL;
 
+	while (buf[k])
+		k++;
 	while (buf[i] && (buf[i] == ' ' || buf[i] == '\t'))
 		i++;
-	new_buf = malloc(sizeof(char) * (size - i + 1));
+
+	l = k;
+	if (k >= 2)
+		k = k - 2;
+	while (k >= 0 && (buf[k] == ' ' || buf[k] == '\t'))
+	{
+		count++;
+		k--;
+	}
+	if (count >= 1)
+	{
+		buf[l - count - 1] = '\n';
+		buf[l - count] = '\0';
+	}
+	new_buf = malloc(sizeof(char) * (l - i - count + 1));
 	for (; buf[i]; i++, j++)
 		new_buf[j] = buf[i];
 	new_buf[j] = '\0';
