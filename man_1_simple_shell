@@ -1,0 +1,32 @@
+.TH hsh 1 "10 April 2022" "1.0" "Simple Shell"
+
+.SH NAME
+.B hsh - shell (command interpreter)
+.SH SYNOPSIS
+hsh [command] [command options]
+.SH DESCRIPTION
+hsh is a basic command interpreter, that's try to recreate the functionallity of sh or bash, this interp´reter executes the commands passed from a command line, std input or some files
+.SH SEARCH AND EXECUTION
+In the interactive mode, we can execute differents types of commands like: builtin commands, shell functions or programs
+The builtins execute without calling a new process
+If the command name doesn't match a function or builtin, the command is searched for as a normal program in the file system
+The non interactive mode can be used without entering the hsh program, by redirecting the output from another command
+.SS Search
+hsh searches for the argument 0 of the string passed. First search for match builtins, then for executables in the current directory, and for last search the command in the PATH
+.SS Arguments
+hsh handles command arguments, using the strtok function
+.SS Builtins
+.TP
+.B ctrl + d
+send a signal to finish the process
+.TP
+.B exit
+exits the shell
+.TP
+.B env
+
+.TP
+.SH SEE ALSO
+can see this proyect in: <-- https://github.com/NachoCape/holbertonschool-simple_shell.git --> for more information
+.SH AUTHOR
+Ignacio Capezzolo and Mauro Trenche
