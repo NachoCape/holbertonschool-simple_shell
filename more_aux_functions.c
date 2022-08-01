@@ -17,7 +17,7 @@ char *mod_buf(char *buf)
 	while (buf[i] && (buf[i] == ' ' || buf[i] == '\t'))
 		i++;
 	l = k;
-	if (k > 2)
+	if ((k - i) > 2)
 		k = k - 2;
 	while (k >= 0 && (buf[k] == ' ' || buf[k] == '\t'))
 	{
