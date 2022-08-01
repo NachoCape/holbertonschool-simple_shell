@@ -1,13 +1,13 @@
 <h1 align="center">Holberton shell</h1>
-This repository it's about hsh (Holberton shell). The hsh it's a basic command line interpreter, this basic shell try to recreate someones of the functions of other shells like bash or sh. This is a public repository so feel free to clone it and use it
+This repository is about hsh (Holberton shell). The hsh is a basic command line interpreter, this basic shell try to recreate some of the functions of other shells like bash or sh. This is a public repository so feel free to clone it and use it
 
 <h2 align="center">Description</h2>
 
-- First at all checks if the user enter in the interactive mode, in negative case the will try to execute the command only one time<br>
-- If user enter in the interactive mode, it shows a prompt and wait the user enter a command. When a command ends the execution the prompt shows again<br>
+- First at all, check if the user enters in the interactive mode, otherwise the hsh will try to execute the command only ones time<br>
+- If the user enters in the interactive mode, a prompt will be displayed and the hsh will wait for the user to enter a command. When a command finished the execution, the prompt will show up again<br>
 - Manage border cases like: "ctrl + d", "\n", etc<br>
 - Manage commands with arguments<br>
-- Handle if the user enter a command with the entire path or not, in negative the hsh program will search in all directories of the PATH (environment variable)<br>
+- Handle if the user enters a command with the entire path or not, if not the hsh program will search for the command in all the directories of the PATH (environment variable)<br>
 
 <h2 align="center">List of allowed functions</h2>
 
@@ -45,33 +45,33 @@ This repository it's about hsh (Holberton shell). The hsh it's a basic command l
 
 <h2 align="center">Files</h2>
 
-**simple_shell.c** - contains the code structure of main functions and other auxiliar functions
-> separator - this functions separate the arguments readed's<br>
-> array_copy - copy a grid of arrays in new memory<br>
-> interactive - aux functions to know if we are in interactive mode or not<br>
-> cd - manage if the std input is "ctrl + d"<br>
+**simple_shell.c** - this file contains the code structure of main functions and other auxiliary functions
+> separator - this function separates the arguments read<br>
+> array_copy - copies a grid of arrays in a new memory<br>
+> interactive - aux function to know if we are in interactive mode or not<br>
+> cd - manages if the std input is "ctrl + d"<br>
 > main - main function<br>
 
 **aux_functions.c** - this file contain auxiliar functions 
->  _flag - aux functions that help separator function to count the arguments<br>
->  _getenv - get an environment variable<br>
->  cant_dir - count the directories of path<br>
->  _path - create an array of pointers with all the directories of PATH<br>
->  _which - search a command in the PATH<br>
+>  _flag - aux function that helps separator function to count the arguments<br>
+>  _getenv - gets an environment variable<br>
+>  cant_dir - counts the directories of the path<br>
+>  _path - creates an array of pointers with all the directories of PATH<br>
+>  _which - searches for a command in the PATH<br>
 
 **aux_functions2.c** - this file contain auxiliar functions
-> free_arr - free the memory of a grid<br>
-> freedom - free the memory of envir and buf<br>
-> freedom3 - free the memory of arr, buf and envir<br>
-> str_concat - concat two arrays with a "/" in the middle of them<br>
+> free_arr - frees the memory of a grid<br>
+> freedom - frees the memory of envir and buf<br>
+> freedom3 - frees the memory of arr, buf and envir<br>
+> str_concat - concats two arrays with a "\" in the middle of them<br>
 
 **more_functions.c** - this file contain auxiliar functions
-> mod_buf - remove the spaces or tabs in the beggining of buff and save it in a new space of memory<br>
-> save_lines - manage the exit or jump line<br>
+> mod_buf - removes the spaces or tabs in the beggining of buff and saves it in a new space of memory<br>
+> save_lines - manages the exit or jumps line<br>
 
 **README.md** - contain the information and instructions about the hsh program
 
-**AUTHORS** - List with names and emails of the creators of the program
+**AUTHORS** - List of names and emails of the program creators
 
 **man** - man file for this shell
 
