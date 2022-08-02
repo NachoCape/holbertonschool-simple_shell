@@ -3,15 +3,17 @@
 /**
  * mod_buf - remove the spaces or tabs in the beggining of buff
  * @buf: array of chars
- *
+ * @aux: integer (return value of getline)
  * Return: buf
  */
 
-char *mod_buf(char *buf)
+char *mod_buf(char *buf, int aux)
 {
 	int i = 0, j = 0, k = 0, l = 0, count = 0;
 	char *new_buf = NULL;
 
+	if (aux == EOF)
+		return (NULL);
 	while (buf[k])
 		k++;
 	while (buf[i] && (buf[i] == ' ' || buf[i] == '\t'))
@@ -46,6 +48,11 @@ char *mod_buf(char *buf)
 
 int save_lines(char *new_buf, char **envir)
 {
+	if (!new_buf)
+	{
+		free(new_buf);
+		return (1);
+	}
 	if (strcmp(new_buf, "exit\n") == 0)
 	{
 		free(new_buf);

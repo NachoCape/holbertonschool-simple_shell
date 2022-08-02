@@ -14,7 +14,7 @@ extern char **environ;
 
 char **separator(char *str, char del);
 char **array_copy(char **arr, int extra);
-int cd(int eof, int mode);
+int cd(int eof, int mode, char *new_buf);
 int interactive(size_t mode);
 /**void execution(char *command, char **ar, char **nacho, char **envir);*/
 char *_which(char *command, char **envir);
@@ -28,7 +28,7 @@ void freedom3(char **arr, char *buf, char **envir);
 /*void freedom2(char **arr, char **envir);*/
 char *str_concat(char *buf, char **path, char *command, int i);
 void rm_jump(char *buf);
-char *mod_buf(char *buf);
+char *mod_buf(char *buf, int aux);
 int save_lines(char *new_buf, char **envi);
 
 #endif

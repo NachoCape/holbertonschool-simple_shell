@@ -93,16 +93,18 @@ int interactive(size_t mode)
  * cd - manage if the std input is "ctrl + d"
  * @eof: integer (end of the file)
  * @mode: integer (flag to know if we are in interactive mode)
+ * @new_buf: string of chars
  *
  * Return: 1 if "ctrl + d" was pressed, otherwise 0
  */
 
-int cd(int eof, int mode)
+int cd(int eof, int mode, char *new_buf)
 {
 	if (eof == EOF)
 	{
 		if (mode == 1)
-		printf("\n");
+			printf("\n");
+		free(new_buf);
 		return (0);
 	}
 	return (1);
@@ -124,25 +126,24 @@ int main(int argc  __attribute__((unused)), char **argv)
 	size_t size_buf = 0;
 	char *buf = NULL, *new_buf = NULL, *command;
 	char **arr = NULL, **envir = NULL;
-	int i = 0, loop = 1, child = 0, md = 0, aux = 0, exit_or_jump = 0;
+	int s = 0, loop = 1, child = 0, md = 0, aux = 0, exit_or_jump = 0;
 
 	for (; ; loop++)
 	{
 		envir = array_copy(environ, 0);
 		md = interactive(md);
 		aux = getline(&buf, &size_buf, stdin);
-		if (cd(aux, md) == 0)
-			break;
-		new_buf = mod_buf(buf);
+		new_buf = mod_buf(buf, aux);
 		exit_or_jump = save_lines(new_buf, envir);
 		if (exit_or_jump == 2)
 			continue;
-		if (exit_or_jump == 1)
+		if (cd(aux, md, new_buf) == 0 || exit_or_jump == 1)
 			break;
 		arr = separator(new_buf, ' ');
 		command = _which(arr[0], envir);
 		if (!command)
 		{
+			perror(argv[0]);
 			freedom3(arr, new_buf, envir);
 			continue;
 		}
@@ -154,7 +155,7 @@ int main(int argc  __attribute__((unused)), char **argv)
 			break;
 		} else if (child == -1)
 			return (1);
-		wait(&i);
+		wait(&s);
 		if (strcmp(command, arr[0]) != 0)
 			free(command);
 		freedom3(arr, new_buf, envir);
