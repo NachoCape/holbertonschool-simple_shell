@@ -30,5 +30,8 @@ char *str_concat(char *buf, char **path, char *command, int i);
 void rm_jump(char *buf);
 char *mod_buf(char *buf, int aux);
 int save_lines(char *new_buf, char **envi);
+void _putchar(char c);
+void _puts(char *s);
+void errors(char *command);
 
 #endif

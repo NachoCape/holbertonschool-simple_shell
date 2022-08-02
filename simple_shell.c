@@ -143,7 +143,7 @@ int main(int argc  __attribute__((unused)), char **argv)
 		command = _which(arr[0], envir);
 		if (!command)
 		{
-			perror(argv[0]);
+			errors(arr[0]);
 			freedom3(arr, new_buf, envir);
 			continue;
 		}

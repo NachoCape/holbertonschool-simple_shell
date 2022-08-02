@@ -65,3 +65,48 @@ int save_lines(char *new_buf, char **envir)
 	}
 	return (0);
 }
+
+/**
+ * _putchar - print one character
+ * @c: char
+ *
+ * Return:void
+ */
+
+void _putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+/**
+ * _puts - print a string
+ * @s: string of chars
+ *
+ * Return:void
+ */
+
+void _puts(char *s)
+{
+	int i = 0;
+
+	for (; s[i]; s++)
+		_putchar(s[i]);
+}
+
+/**
+ * erros - aux function to print a erro message
+ * @comamnd: the command that cause the error
+ *
+ * Return: void
+ */
+
+void errors(char *command)
+{
+	char *part1 = "./hsh: 1: ";
+	char *part2 = ": not found";
+
+	_puts(part1);
+	_puts(command);
+	_puts(part2);
+	_putchar('\n');
+}
