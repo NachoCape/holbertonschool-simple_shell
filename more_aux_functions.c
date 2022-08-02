@@ -94,8 +94,8 @@ void _puts(char *s)
 }
 
 /**
- * erros - aux function to print a erro message
- * @comamnd: the command that cause the error
+ * errors - aux function to print a erro message
+ * @command: the command that cause the error
  *
  * Return: void
  */
