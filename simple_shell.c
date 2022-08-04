@@ -135,7 +135,7 @@ int main(int argc  __attribute__((unused)), char **argv)
 		aux = getline(&buf, &size_buf, stdin);
 		new_buf = mod_buf(buf, aux);
 		e_or_j = save_lines(new_buf, envir);
-		if (exit_or_jump == 2)
+		if (e_or_j == 2)
 			continue;
 		if (cd(aux, md, new_buf) == 0 || e_or_j == 1)
 			break;
