@@ -151,7 +151,7 @@ int main(int argc  __attribute__((unused)), char **argv)
 		if (child == 0)
 		{
 			if (execve(command, arr, envir) == -1)
-				perror(argv[0]);
+				perror(arr[0]);
 			break;
 		} else if (child == -1)
 			return (1);
