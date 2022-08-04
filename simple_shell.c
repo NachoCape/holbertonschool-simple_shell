@@ -147,7 +147,6 @@ int main(int argc  __attribute__((unused)), char **argv)
 			freedom3(arr, new_buf, envir);
 			continue;
 		}
-		printf("argv[0] = %s\n", argv[0]);
 		child = fork();
 		if (child == 0)
 		{
