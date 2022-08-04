@@ -17,7 +17,7 @@ char **array_copy(char **arr, int extra);
 int cd(int eof, int mode, char *new_buf);
 int interactive(size_t mode);
 /**void execution(char *command, char **ar, char **nacho, char **envir);*/
-char *_which(char *command, char **envir, char **arr, char **argv);
+char *_which(char *command, char **envir, char **arr, char **argv, int *res);
 char **_path(char **envir);
 char *_getenv(const char *name, char **envir);
 int cant_dir(char *path);

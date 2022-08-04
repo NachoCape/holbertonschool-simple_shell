@@ -101,6 +101,7 @@ char **_path(char **envir)
  * @envir: pointer to an array of pointers (all the environments variables)
  * @arr: pointer to an array of pointers
  * @argv: pointer to an array of pointers
+ * @res: int (status to be return)
  *
  * Description: search if command its a valid command througth the differents
  * directories of the PATH
@@ -109,7 +110,7 @@ char **_path(char **envir)
  * otherwise NULL
  */
 
-char *_which(char *command, char **envir, char **arr, char **argv)
+char *_which(char *command, char **envir, char **arr, char **argv, int *res)
 {
 	char **path = NULL;
 	struct stat st;
@@ -127,6 +128,7 @@ char *_which(char *command, char **envir, char **arr, char **argv)
 	if (!path)
 	{
 		errors(argv, command);
+		*res = 127;
 		return (NULL);
 	}
 	while (path[i])
