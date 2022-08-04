@@ -74,7 +74,7 @@ char **_path(char **envir)
 	char **arr_of_dir = NULL;
 
 	path = _getenv("PATH", envir);
-	if (!path)
+	if (!path || strlen(path) == 5)
 		return (NULL);
 	size = cant_dir(path);
 	arr_of_dir = malloc((size) * sizeof(char *));
