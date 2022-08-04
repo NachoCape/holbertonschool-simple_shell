@@ -126,7 +126,7 @@ int main(int argc  __attribute__((unused)), char **argv)
 	size_t size_buf = 0;
 	char *buf = NULL, *new_buf = NULL, *command;
 	char **arr = NULL, **envir = NULL;
-	int s = 0, loop = 1, child = 0, md = 0, aux = 0, exit_or_jump = 0;
+	int s = 0, loop = 1, child = 0, md = 0, aux = 0, e_or_j = 0, res = 0;
 
 	for (; ; loop++)
 	{
@@ -134,16 +134,16 @@ int main(int argc  __attribute__((unused)), char **argv)
 		md = interactive(md);
 		aux = getline(&buf, &size_buf, stdin);
 		new_buf = mod_buf(buf, aux);
-		exit_or_jump = save_lines(new_buf, envir);
+		e_or_j = save_lines(new_buf, envir);
 		if (exit_or_jump == 2)
 			continue;
-		if (cd(aux, md, new_buf) == 0 || exit_or_jump == 1)
+		if (cd(aux, md, new_buf) == 0 || e_or_j == 1)
 			break;
 		arr = separator(new_buf, ' ');
-		command = _which(arr[0], envir);
+		command = _which(arr[0], envir, arr);
 		if (!command)
 		{
-			errors(arr[0]);
+			/*errors(arr[0]);*/
 			freedom3(arr, new_buf, envir);
 			continue;
 		}
@@ -155,11 +155,11 @@ int main(int argc  __attribute__((unused)), char **argv)
 			break;
 		} else if (child == -1)
 			return (1);
-		wait(&s);
+		res = _wait(child, &s);
 		if (strcmp(command, arr[0]) != 0)
 			free(command);
 		freedom3(arr, new_buf, envir);
 	}
 	freedom(envir, buf);
-	return (0);
+	return (res);
 }
