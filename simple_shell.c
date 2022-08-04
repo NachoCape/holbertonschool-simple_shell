@@ -147,11 +147,12 @@ int main(int argc  __attribute__((unused)), char **argv)
 			freedom3(arr, new_buf, envir);
 			continue;
 		}
+		printf("argv[0] = %s\n", argv[0]);
 		child = fork();
 		if (child == 0)
 		{
 			if (execve(command, arr, envir) == -1)
-				perror(arr[0]);
+				perror(argv[0]);
 			break;
 		} else if (child == -1)
 			return (1);
