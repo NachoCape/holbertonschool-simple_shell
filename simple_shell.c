@@ -140,10 +140,9 @@ int main(int argc  __attribute__((unused)), char **argv)
 		if (cd(aux, md, new_buf) == 0 || e_or_j == 1)
 			break;
 		arr = separator(new_buf, ' ');
-		command = _which(arr[0], envir, arr);
+		command = _which(arr[0], envir, arr, argv);
 		if (!command)
 		{
-			/*errors(arr[0]);*/
 			freedom3(arr, new_buf, envir);
 			continue;
 		}

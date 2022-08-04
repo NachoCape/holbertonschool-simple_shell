@@ -17,7 +17,7 @@ char **array_copy(char **arr, int extra);
 int cd(int eof, int mode, char *new_buf);
 int interactive(size_t mode);
 /**void execution(char *command, char **ar, char **nacho, char **envir);*/
-char *_which(char *command, char **envir, char **arr);
+char *_which(char *command, char **envir, char **arr, char **argv);
 char **_path(char **envir);
 char *_getenv(const char *name, char **envir);
 int cant_dir(char *path);
@@ -32,7 +32,7 @@ char *mod_buf(char *buf, int aux);
 int save_lines(char *new_buf, char **envi);
 void _putchar(char c);
 void _puts(char *s);
-/*void errors(char *command);*/
+void errors(char **argv, char *command);
 int _wait(int child, int *s);
 void _env(char **envir, char **arr);
 

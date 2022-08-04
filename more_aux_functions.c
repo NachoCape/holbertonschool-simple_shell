@@ -75,7 +75,7 @@ int save_lines(char *new_buf, char **envir)
 
 void _putchar(char c)
 {
-	write(1, &c, 1);
+	write(STDERR_FILENO, &c, 1);
 }
 
 /**
@@ -96,17 +96,15 @@ void _puts(char *s)
 /**
  * errors - aux function to print a erro message
  * @command: the command that cause the error
+ * @argv: pointer to an array of pointers
  *
  * Return: void
  */
 
-void errors(char *command)
+void errors(char **argv, char *command)
 {
-	char *part1 = "./hsh: 1: ";
-	char *part2 = ": not found";
-
-	_puts(part1);
-	_puts(command);
-	_puts(part2);
-	_putchar('\n');
+	write(2, argv[0], strlen(argv[0]));
+	write(2, ": 1: ", 5);
+	write(2, command, strlen(command));
+	write(2, ": not found\n", 12);
 }
