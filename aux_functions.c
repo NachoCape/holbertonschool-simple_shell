@@ -134,6 +134,11 @@ char *_which(char *command, char **envir, char **arr)
 		buf = NULL;
 		i++;
 	}
+	if (!path[0])
+	{
+		free_arr(path);
+		return (command);
+	}
 	free_arr(path);
 	return (buf);
 }
