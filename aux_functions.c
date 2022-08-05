@@ -37,7 +37,7 @@ char *_getenv(const char *name, char **envir)
 		w = envir[i];
 		while (name[j] != '\0' && name[j] == w[j])
 			j++;
-		if (name[j] == '\0' && w[j]/* == '='*/)
+		if (name[j] == '\0' && w[j] == '/')
 			return (w);
 	}
 	return (NULL);
