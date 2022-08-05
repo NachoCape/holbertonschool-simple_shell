@@ -149,7 +149,8 @@ command: Every Program in $PATH
 
 
 <h2>Flowchart</h2>
-![Flowcharts](https://user-images.githubusercontent.com/105528074/183088616-48eeb035-3acf-4e0d-be30-afbb0cfe4a10.png)
+<img src="https://user-images.githubusercontent.com/105528074/183089037-aeaa8bf3-8fba-444d-b960-4b20b4adfea2.png"></img>
+
 
     
 
