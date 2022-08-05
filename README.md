@@ -65,9 +65,16 @@ This repository is about hsh (Holberton shell). The hsh is a basic command line 
 > freedom3 - frees the memory of arr, buf and envir<br>
 > str_concat - concats two arrays with a "\" in the middle of them<br>
 
-**more_functions.c** - this file contain auxiliar functions
+**more_aux_functions.c** - this file contain auxiliar functions
 > mod_buf - removes the spaces or tabs in the beggining of buff and saves it in a new space of memory<br>
 > save_lines - manages the exit or jumps line<br>
+> _putchar - print one character<br>
+> _puts - print a string<br>
+> errors - aux function to print a erro message<br>
+
+**more_more_aux_functions.c** - this file contain auxiliar functions
+> _wait - aux function to wait and get the exit status<br>
+> _env - print all environments varaibles<br>
 
 **README.md** - contain the information and instructions about the hsh program
 
