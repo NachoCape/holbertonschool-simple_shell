@@ -148,6 +148,10 @@ command: Every Program in $PATH
     -rw-r--r-- 1 root root  3560 Jul 31 11:10 simple_shell.c
 
 
+<h2>Flowchart</h2>
+    ![Diagrama sin título drawio](https://user-images.githubusercontent.com/105528074/183087625-f6acf3f1-59d8-4dc8-81c4-5d7c30cde126.png)
+    
+
 <h2>Authors</h2>
 
 Ignacio Capezzolo, Mauro Trenche
