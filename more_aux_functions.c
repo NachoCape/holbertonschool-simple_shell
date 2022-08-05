@@ -75,7 +75,7 @@ int save_lines(char *new_buf, char **envir)
 
 void _putchar(char c)
 {
-	write(STDERR_FILENO, &c, 1);
+	write(1, &c, 1);
 }
 
 /**
