@@ -17,9 +17,6 @@ hsh searches for the argument 0 of the string passed. First it searches for matc
 hsh handles command arguments, using the strtok function
 .SS Builtins
 .TP
-.B ctrl + d
-sends a signal to finish the process
-.TP
 .B exit
 exits the shell
 .TP
