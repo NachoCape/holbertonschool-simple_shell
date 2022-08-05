@@ -17,21 +17,21 @@ char **separator(char *str, char del)
 	char **out = NULL;
 	char *tok = NULL, *deli = " \n\t";
 
-	while (str[k] && (str[k] == ' ' || str[k] == '\t'))
+	while (str[k] && (str[k] == ' ' || str[k] == '\t'))/*skip ' ' or \t begining*/
 		k++;
-	for (i = k; str[i]; i++)
+	for (i = k; str[i]; i++)/*count the amount of arguments*/
 		if ((str[i] == del || str[i] == '\t') && _flag(str, i))
 			count++;
 	out = malloc(sizeof(char *) * count);
-	if (!out)
+	if (!out)/*checks if mallocs fails*/
 	{
 		free(out);
 		return (NULL);
 	}
-	out[count - 1] = NULL;
-	tok = strtok(str, deli);
-	out[j] = strdup(tok);
-	while (tok)
+	out[count - 1] = NULL;/*assign NULL terminated*/
+	tok = strtok(str, deli);/*use strtok to capture arguments*/
+	out[j] = strdup(tok);/*assign the first argument*/
+	while (tok)/*loop to assign all arguments to the array*/
 	{
 		j++;
 		tok = strtok(NULL, deli);
@@ -54,13 +54,13 @@ char **array_copy(char **arr, int extra)
 	int i = 0, len = 0;
 	char **new_arr;
 
-	for (i = 0 ; arr[i] != NULL ; i++)
+	for (i = 0 ; arr[i] != NULL ; i++)/*count the large of the grid*/
 	{
 	}
 	new_arr = malloc(sizeof(char *) * (i + extra + 1));
-	if (!new_arr)
+	if (!new_arr)/*checks for mallocs fails*/
 		return (NULL);
-	for (i = 0 ; arr[i] != NULL ; i++)
+	for (i = 0 ; arr[i] != NULL ; i++)/*loop to duplicate strings in each arr[i]*/
 	{
 		len = strlen(arr[i]);
 		new_arr[i] = malloc(sizeof(char) * (len + 1));
@@ -82,9 +82,9 @@ char **array_copy(char **arr, int extra)
 
 int interactive(size_t mode)
 {
-	if (!isatty(STDIN_FILENO))
+	if (!isatty(STDIN_FILENO))/*not interactive mode*/
 		mode = 0;
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO))/*interactive mode*/
 		write(1, "#cisfun$", 8);
 	return (mode);
 }
@@ -100,7 +100,7 @@ int interactive(size_t mode)
 
 int cd(int eof, int mode, char *new_buf)
 {
-	if (eof == EOF)
+	if (eof == EOF)/*checks end of the file*/
 	{
 		if (mode == 1)
 			printf("\n");
@@ -130,32 +130,32 @@ int main(int argc  __attribute__((unused)), char **argv)
 
 	for (; ; loop++)
 	{
-		envir = array_copy(environ, 0);
-		md = interactive(md);
-		aux = getline(&buf, &size_buf, stdin);
-		new_buf = mod_buf(buf, aux);
-		e_or_j = save_lines(new_buf, envir);
+		envir = array_copy(environ, 0);/*copy of environ*/
+		md = interactive(md);/*checks interactive mode or not*/
+		aux = getline(&buf, &size_buf, stdin);/*use getline to read the stdin*/
+		new_buf = mod_buf(buf, aux);/*copy and remove spaces and tabs from buff*/
+		e_or_j = save_lines(new_buf, envir);/*function that controls exit and \n*/
 		if (e_or_j == 2)
 			continue;
-		if (cd(aux, md, new_buf) == 0 || e_or_j == 1)
+		if (cd(aux, md, new_buf) == 0 || e_or_j == 1)/*manage breaks cases*/
 			break;
-		arr = separator(new_buf, ' ');
-		command = _which(arr[0], envir, arr, argv, &res);
+		arr = separator(new_buf, ' ');/*tokenize the buf*/
+		command = _which(arr[0], envir, arr, argv, &res);/*check the command exist*/
 		if (!command)
 		{
-			freedom3(arr, new_buf, envir);
+			freedom3(arr, new_buf, envir);/*function that frees almost everything*/
 			continue;
 		}
-		child = fork();
-		if (child == 0)
+		child = fork();/*fork starts*/
+		if (child == 0)/*fork succes*/
 		{
 			if (execve(command, arr, envir) == -1)
 				perror(argv[0]);
 			break;
-		} else if (child == -1)
+		} else if (child == -1)/*fork fails*/
 			return (1);
-		res = _wait(child, &s);
-		if (strcmp(command, arr[0]) != 0)
+		res = _wait(child, &s);/*function to manage the wait and exit state value*/
+		if (strcmp(command, arr[0]) != 0)/*free command if it alloc memory in which*/
 			free(command);
 		freedom3(arr, new_buf, envir);
 	}

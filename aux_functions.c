@@ -32,7 +32,7 @@ char *_getenv(const char *name, char **envir)
 	char *w = NULL;
 	int i = 0, j = 0;
 
-	for (; envir[i] != NULL; i++)
+	for (; envir[i] != NULL; i++)/*loop to travel the environ array*/
 	{
 		w = envir[i];
 		while (name[j] != '\0' && name[j] == w[j])
@@ -73,12 +73,12 @@ char **_path(char **envir)
 	char *path, *buf;
 	char **arr_of_dir = NULL;
 
-	path = _getenv("PATH", envir);
-	if (!path || strlen(path) == 5)
+	path = _getenv("PATH", envir);/*get the path environment variable*/
+	if (!path || strlen(path) == 5)/*check if the path is empty*/
 		return (NULL);
 	size = cant_dir(path);
 	arr_of_dir = malloc((size) * sizeof(char *));
-	if (arr_of_dir)
+	if (arr_of_dir)/*tokenize the directorys of the path*/
 	{
 		buf = strtok(path, ":=");
 
@@ -117,21 +117,21 @@ char *_which(char *command, char **envir, char **arr, char **argv, int *res)
 	char *buf = NULL;
 	int i = 0, size = 0;
 
-	if (stat(command, &st) == 0)
+	if (stat(command, &st) == 0)/*if the command has the correct route*/
 		return (command);
-	if (strcmp(arr[0], "env") == 0)
+	if (strcmp(arr[0], "env") == 0)/*env builtin*/
 	{
 		_env(envir, arr);
 		return (NULL);
 	}
 	path = _path(envir);
-	if (!path)
+	if (!path)/*case empty path*/
 	{
 		errors(argv, command);
 		*res = 127;
 		return (NULL);
 	}
-	while (path[i])
+	while (path[i])/*search and concats the command in all dirs of path*/
 	{
 		size = (strlen(path[i]) + strlen(command) + 2);
 		buf = malloc(size * sizeof(char));
@@ -144,10 +144,10 @@ char *_which(char *command, char **envir, char **arr, char **argv, int *res)
 		buf = NULL;
 		i++;
 	}
-	if (!path[0])
+	if (!buf)
 	{
-		free_arr(path);
-		return (command);
+		errors(argv, command);
+		*res = 127;
 	}
 	free_arr(path);
 	return (buf);

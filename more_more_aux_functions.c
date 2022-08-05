@@ -11,8 +11,8 @@
 int _wait(int child, int *s)
 {
 	waitpid(child, s, 0);
-	if (WIFEXITED(*s))
-		return (WEXITSTATUS(*s));
+	if (WIFEXITED(*s))/*returns true if the child terminated normally*/
+		return (WEXITSTATUS(*s));/*returns the exit status of the child*/
 	return (1);
 }
 
