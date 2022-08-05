@@ -37,7 +37,7 @@ char *_getenv(const char *name, char **envir)
 		w = envir[i];
 		while (name[j] != '\0' && name[j] == w[j])
 			j++;
-		if (name[j] == '\0' && w[j] == '=')
+		if (name[j] == '\0' && w[j]/* == '='*/)
 			return (w);
 	}
 	return (NULL);
@@ -73,8 +73,8 @@ char **_path(char **envir)
 	char *path, *buf;
 	char **arr_of_dir = NULL;
 
-	path = _getenv("PATH", envir);/*get the path environment variable*/
-	if (!path || strlen(path) == 5)/*check if the path is empty*/
+	path = _getenv("PATH=", envir);/*get the path environment variable*/
+	if (!path/* || strlen(path) == 5*/)/*check if the path is empty*/
 		return (NULL);
 	size = cant_dir(path);
 	arr_of_dir = malloc((size) * sizeof(char *));
